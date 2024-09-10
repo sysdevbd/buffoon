@@ -13,7 +13,7 @@ namespace Buffoon {
        */
       static std::string findValueByKey(const std::string& json_like_string, const std::string& key);
       /**
-       * method to find the payload value from JSON-like string
+       * method to find username (only applicable for mongo client login messages)
        * @param payloadValue
        * @return username
        */
