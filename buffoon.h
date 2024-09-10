@@ -5,6 +5,16 @@
 
 namespace Buffoon {
   class Buffoon {
+    static std::string escapeSpecialChars(const std::string& key) {
+        std::string escapedKey;
+        for (char c : key) {
+          if (c == '$' || c == '^' || c == '.' || c == '*' || c == '+' || c == '?' || c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}' || c == '|') {
+            escapedKey += '\\';
+          }
+          escapedKey += c;
+        }
+        return escapedKey;
+    }
   public:
       /**
        * method to find the value keyed by "payload" from JSON-like string

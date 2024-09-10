@@ -4,7 +4,8 @@
 namespace Buffoon {
 
     std::string Buffoon::findValueByKey(const std::string &json_like_string, const std::string &key) {
-      std::regex key_value_pattern("\"" + key + R"("\s*:\s*("[^"]*"|\d+|\-?\d+\.\d+|true|false|null))");
+      std::string escapedKey = escapeSpecialChars(key);
+      std::regex key_value_pattern("\"" + escapedKey + R"("\s*:\s*("[^"]*"|\d+|\-?\d+\.\d+|true|false|null))");
       std::smatch match;
 
       if (std::regex_search(json_like_string, match, key_value_pattern)) {
