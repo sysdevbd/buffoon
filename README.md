@@ -9,3 +9,40 @@ Say, you are given the following string
 {"opcode": "OP_QUERY", "id": 1, "response_to": 0, "flags": "0x0", "collection": "admin.$cmd", "skip": 0, "return": -1, "query": {"ismaster": 1, "helloOk": true, "client": {"application": {"name": "mongosh 2.3.0"}, "driver": {"name": "nodejs|mongosh", "version": "6.8.0|2.3.0"}, "platform": "Node.js v20.16.0, LE", "os": {"name": "linux", "architecture": "x64", "version": "3.10.0-327.22.2.el7.x86_64", "type": "Linux"}}, "compression": {"0": "none"}}, "fields": {}}
 ```
 and, it is not guaranteed to be a valid JSON string and, as such, you can't load it as JSON using some libraries like [nlohmann/json](https://github.com/nlohmann/json) and such. Moreover, you need to check if the the key "payload" exists in the string and find its value. This is where _Buffoon_ can assist you—**Buffoonism**.
+
+### How to use it?
+#### A. Without any build system
+So far, _Buffoon_ is a single header library with only a single implementation file (.cc). We can build the object file directly and link it with our programs.
+1. Build the object file
+   ```bash
+   $ g++ -c -I ./  buffoon.cc -o buffoon.o
+   ```
+2. Include the header file (_buffoon.h_) in your program to use the library. Below is a sample program file. Let's call it _main.cc_.
+   ```cpp
+    #include "buffoon.h"
+    #include <string>
+    #include <iostream>
+    
+    int main() {
+      std::string str = "{\"payload\": \"value\"}";
+      
+      const auto payload = Buffoon::Buffoon::findValueByKey(str, "payload");
+      if(payload.empty()) {
+          std::cout << "payload not found\n";
+      }
+      else {
+          std::cout << payload << std::endl;
+      }
+      
+      return 0;   
+    }
+   ```
+3. Build your program linking with object file we built in step 1 and run it.
+   ```bash
+   $ g++ main.cc buffon.o -o main
+   $ ./main
+   value
+   ```
+#### B. Using with Bazel
+
+#### C. Using CMake
