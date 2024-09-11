@@ -34,3 +34,6 @@
 #test
 main.cc
 main
+
+#baze
+/bazel-*
