@@ -63,4 +63,14 @@ So far, _Buffoon_ is a single header library with only a single implementation f
          ]
    )
    ```
+##### Us it by fetching as a remote git repository
+It is quite similar to the above discussed method except that you add it in your **WORKSPACE** file as a git repository:
+```
+git_repository(
+    name = "buffoon",
+    remote = "https://github.com/shiponcs/buffoon.git",
+    branch = "main",
+)
+```
+
 #### C. Using CMake
