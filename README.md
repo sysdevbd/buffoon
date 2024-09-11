@@ -63,7 +63,7 @@ So far, _Buffoon_ is a single header library with only a single implementation f
          ]
    )
    ```
-##### Us it by fetching as a remote git repository
+##### Use it by fetching as a remote git repository
 It is quite similar to the above discussed method except that you add it in your **WORKSPACE** file as a git repository:
 ```
 git_repository(
@@ -72,5 +72,17 @@ git_repository(
     branch = "main",
 )
 ```
+##### Use it as a remote http_archive
+Please refer to [Use by cloning the repo](Use-by-cloning-the-repo) except that in step 2, instead of local repository we add this repo as a remote `http_archive` from Github release. Add this in your **WORKSPACE** file:
+
+```
+http_archive(
+    name = "buffoon",
+    urls = ["https://github.com/shiponcs/buffoon/archive/refs/tags/v1.0.tar.gz"],
+    strip_prefix = "buffoon-1.0",
+    sha256 = "9f8cf50ec49cbe570732dcbdc27ca24ac973a7b954da510a5a8e06ed73a9692b",
+)
+```
+
 
 #### C. Using CMake
