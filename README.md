@@ -44,5 +44,23 @@ So far, _Buffoon_ is a single header library with only a single implementation f
    value
    ```
 #### B. Using with Bazel
-
+##### Use by cloning the repo
+1. Clone the repo; say, in /home/user/
+2. Add the repo to the WORKSPACE file of your existing bazel project like the following:
+   ```
+   local_repository(
+    name = "buffoon",
+    path = "/home/user/buffoon",  # Absolute or relative path to buffoon repo in your machine
+   )
+   ```
+3. Refer this buffoon in your target BUILD file. Sample:
+   ```
+   cc_binary(
+    name = "prog",
+    srcs = ["main.cc"],
+    deps = [
+        "@buffoon//:buffoon"
+         ]
+   )
+   ```
 #### C. Using CMake
