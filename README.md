@@ -86,3 +86,15 @@ http_archive(
 
 
 #### C. Using CMake
+##### Easiest way
+Download/build `libbuffoon.a`/`libbuffoon.so` for a release. Then, link it in your existing cmake project this way:
+```cmake
+# find the library file
+find_library(BUFFOON buffoon paths <path-to-libbuffoon.so>)
+
+# link the library with your executable
+target_link_libraries(<executable> PUBLIC ${BUFFOON})
+
+# don't forget to include the header
+target_include_directories(<executable> PUBLIC <path-to-buffoon.h>)
+```
