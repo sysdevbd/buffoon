@@ -3,7 +3,7 @@ This name ever surprises you?
 
 While my whinning for working by drilling a pointer through a sprawling lists of classes hit its verge, I gave birth to this tiny stupid parsing library. It solves my problem—now I don't need to drill a parameter down to tens of layers of classes of BSON parser to maintain a state for each mongodb client-to-server connection in [envoyproxy/envoy](https://github.com/envoyproxy/envoy). I give it the JSON-like strings that I can generate by using the outputs of BSON library and it finds any key and its value out of it.
 
-### Buffoonism: what buffon can getchu done 🤡 
+### Buffoonism: what buffoon can getchu done 🤡 
 Say, you are given the following string
 ```json
 {"opcode": "OP_QUERY", "id": 1, "response_to": 0, "flags": "0x0", "collection": "admin.$cmd", "skip": 0, "return": -1, "query": {"ismaster": 1, "helloOk": true, "client": {"application": {"name": "mongosh 2.3.0"}, "driver": {"name": "nodejs|mongosh", "version": "6.8.0|2.3.0"}, "platform": "Node.js v20.16.0, LE", "os": {"name": "linux", "architecture": "x64", "version": "3.10.0-327.22.2.el7.x86_64", "type": "Linux"}}, "compression": {"0": "none"}}, "fields": {}}
@@ -39,7 +39,7 @@ So far, _Buffoon_ is a single header library with only a single implementation f
    ```
 3. Build your program linking with object file we built in step 1 and run it.
    ```bash
-   $ g++ main.cc buffon.o -o main
+   $ g++ main.cc buffoon.o -o main
    $ ./main
    value
    ```
@@ -68,7 +68,7 @@ It is quite similar to the above discussed method except that you add it in your
 ```
 git_repository(
     name = "buffoon",
-    remote = "https://github.com/shiponcs/buffoon.git",
+    remote = "https://github.com/sysdevbd/buffoon.git",
     branch = "main",
 )
 ```
@@ -78,7 +78,7 @@ Please refer to [Use by cloning the repo](Use-by-cloning-the-repo) except that i
 ```
 http_archive(
     name = "buffoon",
-    urls = ["https://github.com/shiponcs/buffoon/archive/refs/tags/v1.0.tar.gz"],
+    urls = ["https://github.com/sysdevbd/buffoon/archive/refs/tags/v1.0.tar.gz"],
     strip_prefix = "buffoon-1.0",
     sha256 = "9f8cf50ec49cbe570732dcbdc27ca24ac973a7b954da510a5a8e06ed73a9692b",
 )
