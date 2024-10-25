@@ -1,0 +1,34 @@
+name: manual-test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare Host
+        run: |
+          sudo apt update
+          sudo apt-get -y install g++
+
+      - name: build lib
+        run: |
+          g++ -c -I ./  buffoon.cc -o /home/runner/buffoon.o
+      - name: build test
+        run: |
+          g++ -I ./ ./hack/test/main.cc /home/runner/buffoon.o -o /home/runner/main
+      - name: run test
+        run: |
+          output=$(/home/runner/main)
+          expected_output="value"
+          if [[ "$output" != "$expected_output" ]]; then
+            echo "Output does not match expected output."
+            exit 1
+          else
+            echo "Output matches expected output."
+          fi
